@@ -11,7 +11,7 @@ export class AuthController {
 
     @HttpCode(HttpStatus.OK)
     @Post('login')
-    signIn(@Body() signInDto: SignInDto): any {
+    signIn(@Body() signInDto: SignInDto): Promise<{ token: string }> {
         try {
             return this.authService.signIn(signInDto);
         } catch (error) {
