@@ -1,6 +1,5 @@
 import { Module } from "@nestjs/common";
 import { MongooseModule } from "@nestjs/mongoose";
-import { UserProfile, UserProfileSchema } from "./schemas/user-profile.schema";
 import { User, UserSchema } from "./schemas/user.schema";
 import { UsersController } from "./users.controller";
 import { UsersService } from "./users.service";
@@ -10,8 +9,7 @@ import { ConfigService } from "@nestjs/config";
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{ name: User.name, schema: UserSchema },
-        { name: UserProfile.name, schema: UserProfileSchema }]),
+        MongooseModule.forFeature([{ name: User.name, schema: UserSchema },]),
         JwtModule.registerAsync({
             imports: [JwtModule],
             useFactory: async (configService: ConfigService) => ({
