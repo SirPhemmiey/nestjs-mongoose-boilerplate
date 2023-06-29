@@ -6,8 +6,9 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-Personal NestJS boilierplate to kick-start a new project right off the bat!
+Personal [Nest](https://github.com/nestjs/nest) boilierplate to kick-start a new project right off the bat! This is hooked up with MongoDB as the database and Mongoose for the ORM. Because it's a simple boilerplate, only the login endpoint works.
+
+The goal and intention is for it to be simple to use and worked around. I'll be writing up boilerplates with Sequelize, Prisma and TypeORM in the future.
 
 ## Installation
 
