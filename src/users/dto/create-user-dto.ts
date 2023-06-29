@@ -1,7 +1,7 @@
 import { Transform } from "class-transformer";
 import { IsEmail, IsNotEmpty, IsString, IsStrongPassword, Validate } from "class-validator";
 import { LowerCaseTransformer } from "utils/transformers/lower-case.transformer";
-import { IsDuplicateEmail } from "utils/validators/email-duplicate.validator";
+import { IfDuplicateEmail } from "utils/validators/if-email-duplicate.validator";
 
 export class CreateUserDto {
     @IsNotEmpty()
@@ -10,7 +10,7 @@ export class CreateUserDto {
 
     @IsEmail()
     @Transform(LowerCaseTransformer)
-    @Validate(IsDuplicateEmail)
+    @Validate(IfDuplicateEmail)
     email: string;
 
     @IsNotEmpty()

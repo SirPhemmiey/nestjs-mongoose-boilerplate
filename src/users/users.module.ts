@@ -3,7 +3,7 @@ import { MongooseModule } from "@nestjs/mongoose";
 import { User, UserSchema } from "./schemas/user.schema";
 import { UsersController } from "./users.controller";
 import { UsersService } from "./users.service";
-import { ValidateUserExists } from "utils/validators/user-exists.validator";
+import { IfUserExists } from "utils/validators/if-user-exists.validator";
 import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 
@@ -21,7 +21,7 @@ import { ConfigService } from "@nestjs/config";
         }),
     ],
     controllers: [UsersController],
-    providers: [UsersService, ValidateUserExists],
+    providers: [UsersService, IfUserExists],
     exports: [UsersService]
 })
 
