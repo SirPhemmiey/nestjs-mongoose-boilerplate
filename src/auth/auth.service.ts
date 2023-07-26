@@ -8,23 +8,20 @@ import { SignInDto } from "./dto/auth-login.dto";
 @Injectable()
 export class AuthService {
     constructor(private readonly usersService: UsersService, private jwtService: JwtService,
-        private configService: ConfigService) { }
+        configService: ConfigService) { }
 
     async signIn(signInDto: SignInDto) {
         const user = await this.usersService.findByEmail(signInDto.email);
         if (!user) {
-            throw new UnauthorizedException("Access not granted");
+            throw new UnauthorizedException('Invalid credential');
         }
-        const saltRounds = this.configService.get('auth.saltRounds');
-        const hash = await bcrypt.hash(signInDto.password, saltRounds);
-        const isMatch = await bcrypt.compare(user.password, hash);
+        const isMatch = await bcrypt.compare(signInDto.password, user.password);
         if (!isMatch) {
-            throw new UnauthorizedException("Access not granted");
+            throw new UnauthorizedException('Invalid credential');
         }
         const payload = { email: user.email, id: user.id };
         const token = await this.jwtService.signAsync(payload);
-        return { token }
-
+        return { token };
     }
 
     async facebookLogin() { }
